@@ -58,7 +58,6 @@ interface IPreferencesProps {
   readonly selectedShell: Shell
   readonly selectedTheme: ApplicationTheme
   readonly repositoryIndicatorsEnabled: boolean
-  readonly bypassVerificationCommit: boolean
 }
 
 interface IPreferencesState {
@@ -80,7 +79,6 @@ interface IPreferencesState {
   readonly selectedExternalEditor: string | null
   readonly availableShells: ReadonlyArray<Shell>
   readonly selectedShell: Shell
-  readonly bypassVerificationCommit: boolean
   /**
    * If unable to save Git configuration values (name, email)
    * due to an existing configuration lock file this property
@@ -110,11 +108,7 @@ export class Preferences extends React.Component<
       initialDefaultBranch: null,
       disallowedCharactersMessage: null,
       availableEditors: [],
-<<<<<<< Updated upstream
       useWindowsOpenSSH: false,
-=======
-      bypassVerificationCommit: false,
->>>>>>> Stashed changes
       optOutOfUsageTracking: false,
       confirmRepositoryRemoval: false,
       confirmDiscardChanges: false,
@@ -171,7 +165,6 @@ export class Preferences extends React.Component<
       optOutOfUsageTracking: this.props.optOutOfUsageTracking,
       confirmRepositoryRemoval: this.props.confirmRepositoryRemoval,
       confirmDiscardChanges: this.props.confirmDiscardChanges,
-      bypassVerificationCommit: this.props.bypassVerificationCommit,
       confirmForcePush: this.props.confirmForcePush,
       uncommittedChangesStrategy: this.props.uncommittedChangesStrategy,
       availableShells,
@@ -346,10 +339,6 @@ export class Preferences extends React.Component<
             onRepositoryIndicatorsEnabledChanged={
               this.onRepositoryIndicatorsEnabledChanged
             }
-            bypassVerificationCommit={this.state.bypassVerificationCommit}
-            onBypassVerificationCommit={
-              this.onBypassVerificationCommit
-            }
           />
         )
         break
@@ -383,11 +372,6 @@ export class Preferences extends React.Component<
     this.setState({ optOutOfUsageTracking: value })
   }
 
-  private onBypassVerificationCommit = (
-    value: boolean
-  ) => {
-    this.setState({ bypassVerificationCommit: value })
-  }
   private onConfirmRepositoryRemovalChanged = (value: boolean) => {
     this.setState({ confirmRepositoryRemoval: value })
   }
@@ -525,11 +509,6 @@ export class Preferences extends React.Component<
       this.state.optOutOfUsageTracking,
       false
     )
-    await this.props.dispatcher.setBypassVerificationCommit(
-      this.state.bypassVerificationCommit,
-      false
-    )
-
     await this.props.dispatcher.setConfirmRepoRemovalSetting(
       this.state.confirmRepositoryRemoval
     )

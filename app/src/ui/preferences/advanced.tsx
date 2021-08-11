@@ -12,28 +12,18 @@ interface IAdvancedPreferencesProps {
   readonly optOutOfUsageTracking: boolean
   readonly uncommittedChangesStrategy: UncommittedChangesStrategy
   readonly repositoryIndicatorsEnabled: boolean
-<<<<<<< Updated upstream
   readonly onUseWindowsOpenSSHChanged: (checked: boolean) => void
   readonly onOptOutofReportingChanged: (checked: boolean) => void
-=======
-  readonly bypassVerificationCommit: boolean
-  readonly onOptOutofReportingchanged: (checked: boolean) => void
->>>>>>> Stashed changes
   readonly onUncommittedChangesStrategyChanged: (
     value: UncommittedChangesStrategy
   ) => void
   readonly onRepositoryIndicatorsEnabledChanged: (enabled: boolean) => void
-  readonly onBypassVerificationCommit: (enabled: boolean) => void
 }
 
 interface IAdvancedPreferencesState {
   readonly optOutOfUsageTracking: boolean
   readonly uncommittedChangesStrategy: UncommittedChangesStrategy
-<<<<<<< Updated upstream
   readonly canUseWindowsSSH: boolean
-=======
-  readonly bypassVerificationCommit: boolean
->>>>>>> Stashed changes
 }
 
 export class Advanced extends React.Component<
@@ -46,11 +36,7 @@ export class Advanced extends React.Component<
     this.state = {
       optOutOfUsageTracking: this.props.optOutOfUsageTracking,
       uncommittedChangesStrategy: this.props.uncommittedChangesStrategy,
-<<<<<<< Updated upstream
       canUseWindowsSSH: false,
-=======
-      bypassVerificationCommit: this.props.bypassVerificationCommit,
->>>>>>> Stashed changes
     }
   }
 
@@ -69,15 +55,6 @@ export class Advanced extends React.Component<
 
     this.setState({ optOutOfUsageTracking: value })
     this.props.onOptOutofReportingChanged(value)
-  }
-
-  private onBypassVerificationCommit = (
-    event: React.FormEvent<HTMLInputElement>
-  ) => {
-    const value = !event.currentTarget.checked
-
-    this.setState({ bypassVerificationCommit: value })
-    this.props.onBypassVerificationCommit(value)
   }
 
   private onUncommittedChangesStrategyChanged = (
@@ -107,14 +84,6 @@ export class Advanced extends React.Component<
       </span>
     )
   }
-  private bypassVerificationCommitLabel() {
-    return (
-      <span>
-        (beta) Bypass the pre-commit and commit-msg hooks
-      </span>
-    )
-  }
-
 
   public render() {
     return (
@@ -181,19 +150,6 @@ export class Advanced extends React.Component<
             onChange={this.onReportingOptOutChanged}
           />
         </div>
-        <div className="advanced-section">
-          <h2>Other</h2>
-          <Checkbox
-            label={this.bypassVerificationCommitLabel()}
-            value={
-              this.state.bypassVerificationCommit
-                ? CheckboxValue.Off
-                : CheckboxValue.On
-            }
-            onChange={this.onBypassVerificationCommit}
-          />
-        </div>
-
       </DialogContent>
     )
   }
