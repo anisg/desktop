@@ -1402,6 +1402,13 @@ export class Dispatcher {
     return this.appStore.setStatsOptOut(optOut, userViewedPrompt)
   }
 
+  public setBypassVerificationCommit(
+    optOut: boolean,
+    userViewedPrompt: boolean
+  ): Promise<void> {
+    return Promise.resolve()
+  }
+
   public moveToApplicationsFolder() {
     remote.app.moveToApplicationsFolder?.()
   }

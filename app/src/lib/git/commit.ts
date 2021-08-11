@@ -24,7 +24,7 @@ export async function createCommit(
 
   await stageFiles(repository, files)
 
-  const args = ['-F', '-']
+  const args = ['--no-verify', '-F', '-']
 
   if (amend) {
     args.push('--amend')

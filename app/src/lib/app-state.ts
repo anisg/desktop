@@ -201,6 +201,10 @@ export interface IAppState {
 
   /** The current setting for whether the user has disable usage reports */
   readonly optOutOfUsageTracking: boolean
+
+  /** The current setting for whether the user has turned on the bypass on verification commit */
+  readonly bypassVerificationCommit: boolean
+
   /**
    * A cached entry representing an external editor found on the user's machine:
    *
