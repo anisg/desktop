@@ -11,6 +11,8 @@ interface IAdvancedPreferencesProps {
   readonly uncommittedChangesStrategy: UncommittedChangesStrategy
   readonly repositoryIndicatorsEnabled: boolean
   readonly onOptOutofReportingchanged: (checked: boolean) => void
+  readonly onUseWindowsOpenSSHChanged: (checked: boolean) => void
+  readonly onOptOutofReportingChanged: (checked: boolean) => void
   readonly onUncommittedChangesStrategyChanged: (
     value: UncommittedChangesStrategy
   ) => void
@@ -20,6 +22,7 @@ interface IAdvancedPreferencesProps {
 interface IAdvancedPreferencesState {
   readonly optOutOfUsageTracking: boolean
   readonly uncommittedChangesStrategy: UncommittedChangesStrategy
+  readonly canUseWindowsSSH: boolean
 }
 
 export class Advanced extends React.Component<
@@ -32,6 +35,7 @@ export class Advanced extends React.Component<
     this.state = {
       optOutOfUsageTracking: this.props.optOutOfUsageTracking,
       uncommittedChangesStrategy: this.props.uncommittedChangesStrategy,
+      canUseWindowsSSH: false,
     }
   }
 
@@ -42,6 +46,7 @@ export class Advanced extends React.Component<
 
     this.setState({ optOutOfUsageTracking: value })
     this.props.onOptOutofReportingchanged(value)
+    this.props.onOptOutofReportingChanged(value)
   }
 
   private onUncommittedChangesStrategyChanged = (

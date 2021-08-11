@@ -106,6 +106,7 @@ export class Preferences extends React.Component<
       initialDefaultBranch: null,
       disallowedCharactersMessage: null,
       availableEditors: [],
+      useWindowsOpenSSH: false,
       optOutOfUsageTracking: false,
       confirmRepositoryRemoval: false,
       confirmDiscardChanges: false,
